@@ -6,7 +6,7 @@
     aaaaa       15      5
     aaaaaa      21      6
 */
-fn pyramid_(balls: u16) -> u16 {
+fn pyramid(balls: u16) -> u16 {
     let mut levels = 1;
     let mut balls_in_pyramid = 1;
 
