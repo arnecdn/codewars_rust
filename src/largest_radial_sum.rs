@@ -5,7 +5,7 @@ fn largest_radial_sum(arr: &[i32], d: u32) -> i32 {
         return 0;
     }
 
-    fn rec_radual_sum<'a>(arr: &[i32], mut largest: i32, day_of_month: u32, mut current: u32) -> i32 {
+    fn rec_radual_sum<'a>(arr: &[i32], mut largest: i32, day_of_month: u32,  current: u32) -> i32 {
         let mut honored_sum = 0;
         let mut i = current as usize;
         let mut honoured_seat = 0;

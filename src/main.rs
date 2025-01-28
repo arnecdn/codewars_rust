@@ -58,6 +58,20 @@ mod break_camel_case;
 mod replace_with_alphabet_position;
 mod make_a_deadfish_swim;
 mod numbers_expanded_form;
+mod matrix_transpose;
+mod mexican_wave;
+mod consecutive_strings;
+mod soert_the_cod;
+mod duplicate_encoder;
+mod count_different_matrices;
+mod smallest_k_elements;
+mod shark_pontoon;
+mod product_of_max_array;
+mod find_missing_term;
+mod schedule_job_first;
+mod simple_fun_sum_groups;
+mod sum_two_smallest_numbers;
+mod string_of_array_duplicates;
 
 fn main() {
     println!("Hello codewars");

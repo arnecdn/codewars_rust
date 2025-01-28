@@ -28,7 +28,7 @@ impl Program {
     fn new(s: &str) -> Self {
         let records = s.split("\n").collect::<Vec<_>>();
 
-        if let [program_rec, author_rec, _, phone_rec, date_rec, version_rec, _] = records[..] {
+        if let [program_rec, _, phone_rec, _, version_rec, _] = records[..] {
             return Program {
                 program: Program::parse_rec(program_rec),
                 author: String::from("g964"),
