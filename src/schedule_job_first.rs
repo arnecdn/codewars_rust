@@ -1,4 +1,4 @@
-fn sjf(mut jobs: &[usize], index: usize) -> usize {
+fn sjf( jobs: &[usize], index: usize) -> usize {
     let mut v = jobs.iter().enumerate().collect::<Vec<_>>();
     v.sort_by(|f1, f2| f1.1.cmp(f2.1));
     let mut total_cc = 0usize;

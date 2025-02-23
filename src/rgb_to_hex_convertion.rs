@@ -3,20 +3,6 @@ fn rgb(r: i32, g: i32, b: i32) -> String {
     // format!("{:02X}{:02X}{:02X}", r.round_rgb(), g.round_rgb(), b.round_rgb())
 }
 
-trait Round {
-    fn round_rgb(&self) -> i32;
-}
-
-impl Round for i32 {
-    fn round_rgb(&self) -> i32 {
-        match self {
-            i32::MIN..=-1 => 0,
-            255..=i32::MAX => 255,
-            _ => *self
-        }
-    }
-}
-
 
 macro_rules! compare {
   ( $got : expr, $expected : expr ) => {

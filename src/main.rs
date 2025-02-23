@@ -72,6 +72,24 @@ mod schedule_job_first;
 mod simple_fun_sum_groups;
 mod sum_two_smallest_numbers;
 mod string_of_array_duplicates;
+mod moves_in_squared_strings;
+mod digital_root;
+mod statistics_for_ath_association;
+mod transform_to_prime;
+mod ministring_fuck;
+mod scaling_squared_strings;
+mod tribonacci_sequence;
+mod gravity_flip;
+mod gravity_flip_3d;
+mod compare_versions;
+mod where_is_my_mother;
+mod message_validator;
+mod alphabet_war_airstrike;
+mod cesars_ciphers;
+mod all_star_coding_challenge;
+mod merge_2048;
+mod closest_and_smallest;
+mod king_is_in_check;
 
 fn main() {
     println!("Hello codewars");
