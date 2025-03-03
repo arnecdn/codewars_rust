@@ -119,13 +119,19 @@ fn knight_capture(knight: &Position, king: &Position) -> bool {
 }
 
 fn rook_capture(rook: &Position, blockers: &Vec<Position>, king: &Position) -> bool {
-
-    (rook.x == king.x
-        || rook.y == king.y)
+    let no_blocker_in_row = blockers.iter().any(|b| b.x == king.x && b.x == rook.x && b.y > rook.y && b.y < king.y) == false;
+    let no_blocker_in_col = blockers.iter().any(|b| b.y == king.y && b.y == rook.y && b.x > rook.x && b.x < king.x) == false;
+    (rook.x == king.x && no_blocker_in_row)
+        || (rook.y == king.y && no_blocker_in_col)
 }
 
 fn bishop_capture(bishop: &Position, blockers: &Vec<Position>, king: &Position) -> bool {
-    bishop.x + bishop.y == king.y + king.x || bishop.x + king.y == bishop.y + king.x
+    let no_blocker_in_diagonal = blockers.iter().any(|b|bishop.x + bishop.y == b.y + b.x && b.x + b.y == king.y + king.x ) == false;
+    let no_blocker_in_anti_diagonal = blockers.iter().any(|b| bishop.x + b.y == bishop.y + b.x && b.x + king.y == b.y + king.x) == false;
+    bishop.x + bishop.y == king.y + king.x && no_blocker_in_diagonal
+        || bishop.x + king.y == bishop.y + king.x && no_blocker_in_anti_diagonal
+
+    // bishop.x + bishop.y == king.y + king.x || bishop.x + king.y == bishop.y + king.x
 }
 
 fn pawn_capture(pawn: &Position, king: &Position) -> bool {
@@ -298,9 +304,9 @@ mod tests {
             &[
                 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                [' ', '♜', '♝', '♔', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', '♝', ' ', ' '],
+                [' ', ' ', ' ', ' ', '♜', ' ', ' ', ' '],
+                [' ', ' ', ' ', '♔', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],

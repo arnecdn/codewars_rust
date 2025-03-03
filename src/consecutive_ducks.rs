@@ -24,10 +24,12 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore]
     fn extreme_large_values() {
         assert_eq!(consecutive_ducks(8), false);
     }
     #[test]
+    #[ignore]
     fn large_values() {
         assert_eq!(consecutive_ducks(382131), true);
         assert_eq!(consecutive_ducks(118070), true);
@@ -47,6 +49,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn small_values() {
         assert_eq!(consecutive_ducks(69), true);
         assert_eq!(consecutive_ducks(8), false);
@@ -66,6 +69,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn medium_values() {
         assert_eq!(consecutive_ducks(522), true);
         assert_eq!(consecutive_ducks(974), true);

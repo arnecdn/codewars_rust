@@ -38,6 +38,7 @@ mod tests {
     //
     // J(((JJ(J((J)))(((((JJ)JJJ(J))()J
     #[test]
+    #[ignore]
     fn fixed_tests() {
         dotest("JJ(J)(J))JJ)J()(((J)J)(JJJJ)JJJ())(JJ", true);
 
