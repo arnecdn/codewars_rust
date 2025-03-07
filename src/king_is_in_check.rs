@@ -120,11 +120,12 @@ fn knight_capture(knight: &Position, king: &Position) -> bool {
 fn rook_capture(rook: &Position, blockers: &Vec<Position>, king: &Position) -> bool {
     let no_blocker_in_row = blockers
         .iter()
-        .any(|b| b.x == king.x && b.x == rook.x && b.y > rook.y && b.y < king.y)
+        .any(|b| b.x == king.x && b.x == rook.x && (rook.y < b.y && b.y < king.y || rook.y > b.y && b.y > king.y))
         == false;
+
     let no_blocker_in_col = blockers
         .iter()
-        .any(|b| b.y == king.y && b.y == rook.y && b.x > rook.x && b.x < king.x)
+        .any(|b| b.y == king.y && b.y == rook.y && (rook.x < b.x && b.x < king.x || rook.x > b.x && b.x > king.x))
         == false;
     (rook.x == king.x && no_blocker_in_row) || (rook.y == king.y && no_blocker_in_col)
 }
@@ -145,7 +146,7 @@ fn bishop_capture(bishop: &Position, blockers: &Vec<Position>, king: &Position) 
         anti_diagonal(bishop, b)
             && anti_diagonal(king, b)
             && (bishop.x + bishop.y < b.x + b.y && b.x + b.y < king.x + king.y
-                || bishop.x + bishop.y > b.x + b.y && b.x + b.y > king.x + king.y)
+            || bishop.x + bishop.y > b.x + b.y && b.x + b.y > king.x + king.y)
     }) == false;
 
     diagonal_bishop == diagonal_king && no_blocker_in_diagonal
@@ -155,6 +156,7 @@ fn bishop_capture(bishop: &Position, blockers: &Vec<Position>, king: &Position) 
 fn pawn_capture(pawn: &Position, king: &Position) -> bool {
     (king.y as i32 - pawn.y as i32) == 1 && (king.x.abs_diff(pawn.x) == 1)
 }
+
 
 // Example tests - feel free to play around and experiment with these
 // See https://doc.rust-lang.org/stable/rust-by-example/testing/unit_testing.html
@@ -196,13 +198,29 @@ mod tests {
         }
     }
     #[test]
+    fn random_test2() {
+        dotest(
+            &[
+                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', '♔', ' ', ' '],
+                [' ', ' ', ' ', ' ', '♜', ' ', ' ', ' '],
+                [' ', ' ', ' ', '♝', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+            ],
+            false,
+        );
+    }
+    #[test]
     fn random_test() {
         dotest(
             &[
-                ['♞', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-                [' ', '♞', ' ', ' ', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+                [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', '♔', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', '♝', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' ', '♜', ' ', ' '],
